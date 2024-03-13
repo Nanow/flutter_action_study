@@ -25,7 +25,6 @@ jobs:
       run: flutter build web --release
       env:
         test: secrets.TESTE
-        test: secrets.AGUA
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
