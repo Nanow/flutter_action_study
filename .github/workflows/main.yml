@@ -24,7 +24,7 @@ jobs:
     - name: Build Web
       run: flutter build web --release
       env:
-        test: secrets.TESTE
+        test: ${{secrets.TESTE}}
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
