@@ -30,8 +30,8 @@ jobs:
         
     - name: Copy files
       run: |
-          mkdir build/web &&\
-          docker cp flutter-dev:/app/build/web build/web
+          mkdir build &&\
+          docker cp flutter-dev:/app/build/web build/
       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
