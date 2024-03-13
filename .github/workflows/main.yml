@@ -21,8 +21,10 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
 
-    - name: Build Web
-      run: flutter build web --release --dart-define=test=${{secrets.TESTE}}
+
+    - name: Build with docker
+      run: |
+        docker build -t flutter-dev . --env-file .env
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
