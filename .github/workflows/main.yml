@@ -1,4 +1,4 @@
-name: Flutter Web Build and Deploy
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,10 +6,9 @@ on:
       - main # ajuste de acordo com sua branch principal
 
 jobs:
-  build_and_deploy:
-    name: Build and Deploy
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -25,19 +24,8 @@ jobs:
     - name: Build Web
       run: flutter build web
 
-      
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-      
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: 'build/web'
     - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.key }}
-        
-    - name: Checkout
-      uses: actions/checkout@v4
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: build/web
