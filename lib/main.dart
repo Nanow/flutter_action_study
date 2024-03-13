@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              String.fromEnvironment("teste", defaultValue: "error"),
+              String.fromEnvironment("test", defaultValue: "error"),
             ),
             Text(
               '$_counter',
