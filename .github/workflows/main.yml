@@ -24,7 +24,7 @@ jobs:
 
     - name: Build with docker
       run: |
-        docker build -v -t flutter-dev . \
+        docker build -t flutter-dev . \
         --build-arg number_of_shards=5 \
         --build-arg test="Deu certo" \
         
