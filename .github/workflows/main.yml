@@ -30,6 +30,7 @@ jobs:
         
     - name: Copy files
       run: |
+          mkdir build/web &&\
           docker cp flutter-dev:/app/build/web build/web
       
     - name: Upload artifact
