@@ -24,10 +24,14 @@ jobs:
 
     - name: Build with docker
       run: |
-        docker build -t flutter-dev . \
+        docker build -v -t flutter-dev . \
         --build-arg number_of_shards=5 \
         --build-arg test="Deu certo" \
         
+    - name: Copy files
+      run: |
+          docker cp flutter-dev:/app/build/web build/web
+      
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
