@@ -32,18 +32,6 @@ WORKDIR /app/
 # Run build: 1 - clean, 2 - pub get, 3 - build web
 # RUN flutter clean
 RUN flutter pub get
-RUN flutter pub run build_runner build --delete-conflicting-outputs
-RUN flutter build web  --dart-define-from-file dev-config.json
+RUN flutter build web  
 
 # once here the app will be compiled and ready to deploy
-
-# use nginx to deploy
-FROM public.ecr.aws/nginx/nginx:1.25
-
-# copy the info of the builded web app to nginx
-COPY --from=build-env /app/build/web /usr/share/nginx/html
-RUN pwd
-COPY ./nginx/conf.d /usr/share/nginx/conf
-# Expose and run nginx
-EXPOSE 80
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
