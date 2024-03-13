@@ -23,10 +23,10 @@ jobs:
 
     - name: Build Web
       run: flutter build web
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v4.1.4
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        path: build/web
+        path: 'build/web'
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
