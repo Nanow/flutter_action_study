@@ -24,7 +24,10 @@ jobs:
 
     - name: Build with docker
       run: |
-        docker build -t flutter-dev . --env-file .env
+        docker build -t flutter-dev . \
+        --build-arg number_of_shards=5 \
+        --build-arg test="Deu certo" \
+        
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
