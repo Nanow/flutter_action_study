@@ -23,9 +23,11 @@ jobs:
 
 
     - name: Build with docker
+      env: 
+        FUNCIONA: "Deu certo"
       run: |
         mkdir build &&
-        docker build --build-arg FUNCIONA="Deu certo" --build-arg number_of_shards=5 -t flutter-dev . 
+        docker build --build-arg FUNCIONA=$FUNCIONA --build-arg number_of_shards=5 -t flutter-dev . 
     # - name:  Get Files
     #   run: |
     #     docker cp $(docker create flutter-dev):/app/build/web build/web
