@@ -1,6 +1,6 @@
 # Environemnt to install flutter and build web
 FROM debian:latest AS build-env
-
+ARG FUNCIONA
 # install all needed stuff
 RUN apt-get update
 RUN apt-get install -y curl git unzip
