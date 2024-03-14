@@ -1,5 +1,5 @@
 # Environemnt to install flutter and build web
-FROM public.ecr.aws/debian/debian:latest AS build-env
+FROM debian:latest AS build-env
 
 # install all needed stuff
 RUN apt-get update
