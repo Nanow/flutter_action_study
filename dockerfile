@@ -9,7 +9,7 @@ RUN apt-get install -y curl git unzip
 ARG FLUTTER_SDK=/usr/local/flutter
 ARG APP=/app/
 RUN echo "${FUNCIONA}"
-RUN echo "VALOR DO SECRET ${TESTE}"
+RUN echo "VALOR DO SECRET ${{secrets.TESTE}}"
 ENV MEU_TESTE=$FUNCIONA
 RUN echo "O valor de MINHA_VARIAVEL é ${MEU_TESTE}"
 
