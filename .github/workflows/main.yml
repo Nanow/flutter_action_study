@@ -25,8 +25,8 @@ jobs:
         push: false
         tags: flutter-dev
         build-args: |
-          FUNCIONA="deu certo"
-          number_of_shards=5
+          FUNCIONA=${{ env.FUNCIONA }}
+          number_of_shards=${{ env.TESTE }}
       # run: |
       #   mkdir build &&
       #   docker build --build-arg FUNCIONA=${{secrets.TESTE}} --build-arg number_of_shards=5 -t flutter-dev . 
