@@ -8,9 +8,9 @@ RUN apt-get install -y curl git unzip
 # define variables
 ARG FLUTTER_SDK=/usr/local/flutter
 ARG APP=/app/
-RUN echo "O valor de MINHA_VARIAVEL é ${TEST}"
+ENV MEU_TESTE=$TEST
+RUN echo "O valor de MINHA_VARIAVEL é ${MEU_TESTE}"
 
-ENV test=$TEST
 ARG VERSION=stable
 
 #clone flutter
