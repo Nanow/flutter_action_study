@@ -26,17 +26,17 @@ jobs:
       run: |
         mkdir build &&
         docker build --build-arg FUNCIONA="Deu certo" --build-arg number_of_shards=5 -t flutter-dev . 
-    - name:  Get Files
-      run: |
-        docker cp $(docker create flutter-dev):/app/build/web build/web
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: 'build/web'
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: build/web
+    # - name:  Get Files
+    #   run: |
+    #     docker cp $(docker create flutter-dev):/app/build/web build/web
+    # - name: Upload artifact
+    #   uses: actions/upload-pages-artifact@v3
+    #   with:
+    #     path: 'build/web'
+    # - name: Deploy to GitHub Pages
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     publish_dir: build/web
 
           
