@@ -13,29 +13,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.19.x'
+    # - name: Setup Flutter
+    #   uses: subosito/flutter-action@v2
+    #   with:
+    #     flutter-version: '3.19.x'
 
-    - name: Install dependencies
-      run: flutter pub get
+    # - name: Install dependencies
+    #   run: flutter pub get
       
     - name: Build with docker
       run: |
         mkdir build &&
         docker build --build-arg FUNCIONA=${{secrets.TESTE}} --build-arg number_of_shards=5 -t flutter-dev . 
-    # - name:  Get Files
-    #   run: |
-    #     docker cp $(docker create flutter-dev):/app/build/web build/web
-    # - name: Upload artifact
-    #   uses: actions/upload-pages-artifact@v3
-    #   with:
-    #     path: 'build/web'
-    # - name: Deploy to GitHub Pages
-    #   uses: peaceiris/actions-gh-pages@v3
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     publish_dir: build/web
+    - name:  Get Files
+      run: |
+        docker cp $(docker create flutter-dev):/app/build/web build/web
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: 'build/web'
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: build/web
 
           
