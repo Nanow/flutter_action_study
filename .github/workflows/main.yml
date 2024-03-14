@@ -16,18 +16,10 @@ jobs:
 
     - name: Build with docker
       uses: docker/build-push-action@v2
-      
-      env: 
-        FUNCIONA: "deu certo"
-        TESTE: ${{secrets.TESTE}}
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: flutter-dev
-        build-args: |
-          FUNCIONA=${{ env.FUNCIONA }}
-          number_of_shards=${{ env.TESTE }}
+    - name: Build with docker
+      run: |
+        mkdir build &&
+        docker build --build-arg TESTE=${{secrets.TESTE}}  FUNCIONA=${{ secrets.KEY }} --build-arg number_of_shards=5 -t flutter-dev . 
     - name:  Get Files
       run: |
         docker cp $(docker create flutter-dev):/app/build/web build/web
