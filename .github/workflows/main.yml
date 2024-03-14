@@ -17,7 +17,8 @@ jobs:
       uses: docker/build-push-action@v2
       
       env: 
-        FUNCIONA: ${{secrets.TESTE}}
+        FUNCIONA: "deu certo"
+        TESTE: ${{secrets.TESTE}}
       with:
         context: .
         file: ./Dockerfile
