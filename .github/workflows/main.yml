@@ -25,9 +25,7 @@ jobs:
     - name: Build with docker
       run: |
         mkdir build &&
-        docker build -t flutter-dev . \
-        --build-arg number_of_shards=5 \
-        --build-arg TEST="Deu certo" 
+        docker build -t flutter-dev . --build-arg TEST="Deu certo" --build-arg number_of_shards=5 
     - name:  Get Files
       run: |
         docker cp $(docker create flutter-dev):/app/build/web build/web
