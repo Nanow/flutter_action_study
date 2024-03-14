@@ -27,8 +27,10 @@ jobs:
         mkdir build &&
         docker build -t flutter-dev . \
         --build-arg number_of_shards=5 \
-        --build-arg test="Deu certo" \
-        && docker cp flutter-dev:/app/build/web build/
+        --build-arg test="Deu certo" 
+    - name:  Get Files
+      run: |
+        docker cp $(docker create flutter-dev):/app/build/web build/web
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
