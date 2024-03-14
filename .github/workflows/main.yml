@@ -22,9 +22,9 @@ jobs:
         file: ./Dockerfile
         push: false
         tags: flutter-dev
-        build-args: |
-          FUNCIONA=${{secrets.TESTE}}
-          number_of_shards=5
+        # build-args: |
+        #   FUNCIONA=${{secrets.TESTE}}
+        #   number_of_shards=5
         # run: |
         #   mkdir build &&
         #   docker build --build-arg FUNCIONA=${{secrets.TESTE}} --build-arg number_of_shards=5 -t flutter-dev . 
