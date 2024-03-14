@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 
 on:
@@ -12,7 +13,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Build with docker
       uses: docker/build-push-action@v2
       
@@ -22,20 +23,11 @@ jobs:
       with:
         context: .
         file: ./Dockerfile
-        push: false
+        push: true
         tags: flutter-dev
         build-args: |
           FUNCIONA=${{ env.FUNCIONA }}
           number_of_shards=${{ env.TESTE }}
-      # run: |
-      #   mkdir build &&
-      #   docker build --build-arg FUNCIONA=${{secrets.TESTE}} --build-arg number_of_shards=5 -t flutter-dev . 
-
-
-
-
-
-
     - name:  Get Files
       run: |
         docker cp $(docker create flutter-dev):/app/build/web build/web
@@ -48,5 +40,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: build/web
-
           
