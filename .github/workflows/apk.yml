@@ -1,0 +1,31 @@
+name: Build and Deploy Flutter App to Play Store
+
+on:
+  push:
+    branches:
+      - main  # Ou a branch que você deseja usar
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'adopt'
+        java-version: '12'  # Java é necessário para a assinatura do app
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'  # Use a versão do Flutter que corresponde ao seu projeto
+
+    - name: Get dependencies
+      run: flutter pub get
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Build APK
+      run: flutter build apk 
