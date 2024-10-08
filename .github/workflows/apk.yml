@@ -22,8 +22,9 @@ jobs:
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'  # Ou especifique a versão do Flutter que você está usando
-
+          channel: stable
+          dry-run: true
+          
       - name: Obter dependências
         run: flutter pub get
 
