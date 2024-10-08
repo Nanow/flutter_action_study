@@ -19,7 +19,7 @@ jobs:
     - name: Build with docker
       run: |
         mkdir build &&
-        docker build --build-arg TESTE=${{secrets.TESTE}}  --build-arg number_of_shards=5 -t flutter-dev . 
+        docker build --build-arg TESTE=${{secrets.TESTE}}  --build-arg number_of_shards=5 -t flutter-dev .
     - name:  Get Files
       run: |
         docker cp $(docker create flutter-dev):/app/build/web build/web
