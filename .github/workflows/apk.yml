@@ -31,6 +31,15 @@ jobs:
       - name: Build do APK Android
         run: flutter build apk --release
 
+      - name: Sign APK
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore your_keystore.jks build/app/outputs/flutter-apk/app-release-unsigned.apk $KEY_ALIAS
+          ${ANDROID_HOME}/build-tools/29.0.2/zipalign -v 4 build/app/outputs/flutter-apk/app-release-unsigned.apk build/app/outputs/flutter-apk/app-release.apk
+
       - name: Fazer upload do artefato
         uses: actions/upload-artifact@v3
         with:
