@@ -3,35 +3,39 @@ name: Flutter Android Build
 on:
   push:
     branches:
-      - main  # Substitua pela branch que você deseja monitorar
+      - main  # Monitor the main branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FLUTTER_CHANNEL: stable
+      FLUTTER_VERSION: 3.24.3
+      JAVA_VERSION: 11
 
     steps:
-      - name: Checkout do código-fonte
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configurar Java JDK 11
+      - name: Set up Java JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: ${{ env.JAVA_VERSION }}
 
-      - name: Instalar Flutter
+      - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.3'  # Substitua pela versão específica do Flutter
-          channel: 'stable'
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }}
 
-      - name: Obter dependências
+      - name: Get dependencies
         run: flutter pub get
 
-      - name: Build do APK Android
+      - name: Build APK
         run: flutter build apk --release
 
-      - name: Fazer upload do artefato
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
