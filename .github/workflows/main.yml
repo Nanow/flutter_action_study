@@ -1,10 +1,7 @@
 
 name: Deploy to GitHub Pages
 
-on:
-  push:
-    branches:
-      - main # ajuste de acordo com sua branch principal
+on: workflow_dispatch
 
 jobs:
   deploy:
